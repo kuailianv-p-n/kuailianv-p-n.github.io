@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="max-w-4xl mx-auto">
+    <!-- Author Profile -->
+    <div class="bg-gray-50 p-8 rounded-lg border border-gray-200 mb-12">
+        {% if page.image %}
+            <img src="{{ page.image }}" alt="{{ page.name }}" class="w-24 h-24 rounded-full mb-4">
+        {% endif %}
+        
+        <h1 class="text-3xl font-bold mb-2">{{ page.name }}</h1>
+        
+        {% if page.title %}
+            <p class="text-gray-600 text-lg mb-4">{{ page.title }}</p>
+        {% endif %}
+        
+        {% if page.bio %}
+            <p class="text-gray-700 mb-4">{{ page.bio }}</p>
+        {% endif %}
+        
+        {% if page.social %}
+        <div class="flex gap-4">
+            {% if page.social.twitter %}
+                <a href="{{ page.social.twitter }}" class="btn btn-sm" target="_blank" rel="noopener noreferrer">Twitter</a>
+            {% endif %}
+            {% if page.social.linkedin %}
+                <a href="{{ page.social.linkedin }}" class="btn btn-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            {% endif %}
+            {% if page.social.github %}
+                <a href="{{ page.social.github }}" class="btn btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+            {% endif %}
+            {% if page.website %}
+                <a href="{{ page.website }}" class="btn btn-sm" target="_blank" rel="noopener noreferrer">Website</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Author's Articles -->
+    <h2 class="text-2xl font-bold mb-6">Articles by {{ page.name }}</h2>
+    
+    {% assign author_posts = site.posts | where: "author", page.name %}
+    
+    {% if author_posts.size > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for post in author_posts %}
+                {% include article-card.html post=post %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-600">No articles found.</p>
+    {% endif %}
+</div>

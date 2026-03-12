@@ -1,0 +1,143 @@
+<!-- SEO Meta Tags -->
+<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+<meta name="description" content="{% if page.description %}{{ page.description | strip_html | truncatewords: 30 }}{% else %}{{ site.description }}{% endif %}">
+
+{% if page.keywords %}
+<meta name="keywords" content="{{ page.keywords }}">
+{% elsif site.keywords %}
+<meta name="keywords" content="{{ site.keywords }}">
+{% endif %}
+
+<meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Robots Meta -->
+<meta name="robots" content="{% if page.robots %}{{ page.robots }}{% else %}index, follow{% endif %}">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | truncatewords: 30 }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:type" content="{% if page.og_type %}{{ page.og_type }}{% else %}website{% endif %}">
+{% if page.image %}
+<meta property="og:image" content="{% if page.image contains 'http' %}{{ page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{% elsif site.logo %}
+<meta property="og:image" content="{{ site.logo | absolute_url }}">
+{% endif %}
+<meta property="og:site_name" content="{{ site.title }}">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | truncatewords: 30 }}{% else %}{{ site.description }}{% endif %}">
+{% if page.image %}
+<meta name="twitter:image" content="{% if page.image contains 'http' %}{{ page.image }}{% else %}{{ page.image | absolute_url }}{% endif %}">
+{% elsif site.logo %}
+<meta name="twitter:image" content="{{ site.logo | absolute_url }}">
+{% endif %}
+{% if site.social.twitter %}
+<meta name="twitter:creator" content="@{{ site.social.twitter | split: '/' | last }}">
+<meta name="twitter:site" content="@{{ site.social.twitter | split: '/' | last }}">
+{% endif %}
+
+<!-- Additional Meta Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<meta name="rating" content="general">
+
+<!-- Favicon -->
+{% if site.favicon %}
+<link rel="icon" href="{{ site.favicon }}">
+<link rel="shortcut icon" href="{{ site.favicon }}">
+{% endif %}
+
+<!-- Apple Touch Icon -->
+{% if site.logo %}
+<link rel="apple-touch-icon" href="{{ site.logo }}">
+{% endif %}
+
+<!-- RSS Feed -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+
+<!-- Sitemap -->
+<link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | absolute_url }}">
+
+<!-- Preconnect to External Domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+<!-- Structured Data - Organization -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.logo | absolute_url }}",
+    "description": "{{ site.description }}",
+    "sameAs": [
+        {% if site.social.twitter %}"{{ site.social.twitter }}"{% endif %}
+        {% if site.social.facebook %},{{ site.social.facebook }}"{% endif %}
+        {% if site.social.linkedin %},{{ site.social.linkedin }}"{% endif %}
+        {% if site.social.github %},{{ site.social.github }}"{% endif %}
+    ]
+}
+</script>
+
+<!-- Structured Data - Website -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "{{ site.url }}/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+<!-- Structured Data - Breadcrumb (for posts) -->
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ site.url }}"
+        }
+        {% if page.categories %}
+        ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ page.categories[0] }}",
+            "item": "{{ site.url }}/category/{{ page.categories[0] | slugify }}/"
+        }
+        {% endif %}
+        ,{
+            "@type": "ListItem",
+            "position": {% if page.categories %}3{% else %}2{% endif %},
+            "name": "{{ page.title }}",
+            "item": "{{ page.url | absolute_url }}"
+        }
+    ]
+}
+</script>
+{% endif %}

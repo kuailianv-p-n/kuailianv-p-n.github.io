@@ -1,0 +1,48 @@
+<article class="article-card">
+    {% if include.post.image %}
+    <div class="relative overflow-hidden bg-gray-200 h-48">
+        <img src="{{ include.post.image }}" alt="{{ include.post.title }}" class="w-full h-full object-cover hover:scale-105 transition duration-300 lazy" data-src="{{ include.post.image }}">
+        {% if include.post.categories %}
+        <div class="absolute top-4 left-4">
+            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                {{ include.post.categories[0] }}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="article-card-content">
+        <h3 class="text-xl font-bold mb-2">
+            <a href="{{ include.post.url }}" class="hover:text-blue-600 transition">{{ include.post.title }}</a>
+        </h3>
+        
+        <div class="post-meta mb-3">
+            {% if include.post.author %}
+                <span class="text-gray-600">By <a href="/authors/{{ include.post.author | slugify }}/" class="text-blue-600 hover:underline">{{ include.post.author }}</a></span>
+                <span class="text-gray-400">•</span>
+            {% endif %}
+            <span class="text-gray-600">{{ include.post.date | date: "%b %d, %Y" }}</span>
+            {% if include.post.reading_time %}
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600">{{ include.post.reading_time }} min read</span>
+            {% endif %}
+        </div>
+        
+        <p class="text-gray-700 mb-4 line-clamp-3">
+            {{ include.post.excerpt | strip_html }}
+        </p>
+        
+        {% if include.post.tags %}
+        <div class="flex flex-wrap gap-2 mb-4">
+            {% for tag in include.post.tags limit: 3 %}
+                <a href="/tag/{{ tag | slugify }}/" class="tag text-xs">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <a href="{{ include.post.url }}" class="text-blue-600 font-semibold hover:text-blue-800 transition">
+            Read More →
+        </a>
+    </div>
+</article>

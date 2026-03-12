@@ -1,3 +1,27 @@
+---
+layout: null
+permalink: /robots.txt
+---
 User-agent: *
 Allow: /
-Sitemap: https://kuailianv-p-n.github.io/sitemap.xml
+Disallow: /admin/
+Disallow: /search/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Sitemaps
+Sitemap: {{ site.url }}/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0

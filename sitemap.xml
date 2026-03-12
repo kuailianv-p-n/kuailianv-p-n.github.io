@@ -1,9 +1,52 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kuailianv-p-n.github.io/</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mobile="http://www.mobile.googlebot.com/schemas/mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.last_modified_at %}
+        <lastmod>{{ post.last_modified_at | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% endif %}
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      {% if post.image %}
+        <image:image>
+          <image:loc>{{ site.url }}{{ post.image }}</image:loc>
+          <image:title>{{ post.title }}</image:title>
+        </image:image>
+      {% endif %}
+      <news:news>
+        <news:publication>
+          <news:name>{{ site.title }}</news:name>
+          <news:language>en</news:language>
+        </news:publication>
+        <news:publication_date>{{ post.date | date_to_xmlschema }}</news:publication_date>
+        <news:title>{{ post.title }}</news:title>
+        {% if post.keywords %}
+          <news:keywords>{{ post.keywords }}</news:keywords>
+        {% endif %}
+      </news:news>
+    </url>
+  {% endfor %}
+  {% for page in site.pages %}
+    {% if page.sitemap != false %}
+      <url>
+        <loc>{{ site.url }}{{ page.url }}</loc>
+        {% if page.last_modified_at %}
+          <lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+      </url>
+    {% endif %}
+  {% endfor %}
 </urlset>

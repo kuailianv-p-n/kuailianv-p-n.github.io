@@ -1,0 +1,105 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 md:py-24 rounded-lg mb-12">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ site.title }}</h1>
+        <p class="text-xl md:text-2xl mb-8 opacity-90">{{ site.tagline }}</p>
+        
+        <form class="flex gap-2 max-w-md mx-auto" onsubmit="event.preventDefault(); document.getElementById('search-modal').classList.remove('hidden');">
+            <input type="text" placeholder="Search articles..." class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <button type="submit" class="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition">Search</button>
+        </form>
+    </div>
+</section>
+
+<!-- Featured Posts Section -->
+{% assign featured_posts = site.posts | where: "featured", true | sort: "date" | reverse %}
+{% if featured_posts.size > 0 %}
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8">Featured Articles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for post in featured_posts limit: 2 %}
+            {% include article-card.html post=post %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Latest Posts Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8">Latest News</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {% for post in site.posts limit: 6 %}
+            {% include article-card.html post=post %}
+        {% endfor %}
+    </div>
+    
+    <!-- View All Button -->
+    <div class="text-center">
+        <a href="/page/2/" class="btn">View All Articles</a>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8">Browse by Category</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% assign categories = site.posts | map: "categories" | uniq | flatten | uniq | sort %}
+        {% for category in categories %}
+            {% assign category_posts = site.posts | where_exp: "post", "post.categories contains category" %}
+            <a href="/category/{{ category | slugify }}/" class="bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-lg p-6 transition">
+                <h3 class="text-lg font-bold text-gray-900 mb-2">{{ category }}</h3>
+                <p class="text-gray-600">{{ category_posts.size }} articles</p>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="bg-gray-50 rounded-lg p-8 md:p-12 mb-12 border border-gray-200">
+    <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+        <p class="text-gray-600 mb-6">Get the latest articles delivered to your inbox every week.</p>
+        
+        <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Enter your email" required class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<!-- Pagination -->
+{% if paginator.total_pages > 1 %}
+<nav class="flex justify-center gap-2 mb-12">
+    {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="btn">← Previous</a>
+    {% endif %}
+    
+    {% for page_num in (1..paginator.total_pages) %}
+        {% if page_num == paginator.page %}
+            <span class="px-4 py-2 bg-gray-200 rounded">{{ page_num }}</span>
+        {% else %}
+            <a href="{% if page_num == 1 %}/{% else %}/page/{{ page_num }}/{% endif %}" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+    
+    {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="btn">Next →</a>
+    {% endif %}
+</nav>
+{% endif %}
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ site.title }}",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}",
+    "image": "{{ site.logo | absolute_url }}"
+}
+</script>
