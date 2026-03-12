@@ -2,11 +2,11 @@
 # SEO Optimized for Bing and Google
 
 # Site Settings
-title: "快连VPN - 新闻中心"
-tagline: "最新VPN技术资讯和行业动态"
-description: "快连VPN官方新闻中心，提供最新的VPN技术资讯、行业动态和专家分析。"
-keywords: "technology, news, blog, tech news, industry insights"
-author: "快连VPN"
+title: "Kuailian VPN - News Center"
+tagline: "Latest VPN Technology News and Industry Updates"
+description: "Kuailian VPN Official News Center - Providing the latest VPN technology news, industry updates and expert analysis."
+keywords: "VPN, technology, news, blog, VPN news, industry insights"
+author: "Kuailian VPN"
 email: "contact@kuailian.com"
 url: "https://kuailianv-p-n.github.io"
 baseurl: ""
@@ -19,10 +19,10 @@ favicon: "/assets/images/favicon.ico"
 social:
   twitter: "https://twitter.com/kuailian"
   facebook: "https://facebook.com/kuailian"
-  instagram: "https://instagram.com/technewshub"
-  linkedin: "https://linkedin.com/company/technewshub"
-  github: "https://github.com/technewshub"
-  telegram: "https://t.me/technewshub"
+  instagram: "https://instagram.com/kuailian"
+  linkedin: "https://linkedin.com/company/kuailian"
+  github: "https://github.com/kuailian"
+  telegram: "https://t.me/kuailian"
 
 # IndexNow Configuration (for Bing and Yandex)
 indexnow:
