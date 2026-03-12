@@ -1,0 +1,136 @@
+# ============================================================
+# Site Settings
+# ============================================================
+title: "NewsHub - Breaking News & Analysis"
+description: "Your trusted source for breaking news, in-depth analysis, and expert commentary on technology, business, and world events."
+keywords: "news, technology, business, analysis, breaking news, world events"
+author: "NewsHub Editorial Team"
+author_bio: "A team of passionate journalists and analysts dedicated to delivering accurate, timely, and insightful news coverage."
+logo: "/assets/images/logo.png"
+favicon: "/assets/images/favicon.ico"
+
+# Site URL (required for SEO and sitemap)
+url: "https://kuailianv-p-n.github.io"
+baseurl: ""
+
+# Language
+lang: "en"
+
+# ============================================================
+# Social Media
+# ============================================================
+twitter_username: "newshub"
+social:
+  - name: Twitter
+    url: "https://twitter.com/newshub"
+  - name: Facebook
+    url: "https://facebook.com/newshub"
+  - name: Telegram
+    url: "https://t.me/newshub"
+  - name: Reddit
+    url: "https://reddit.com/r/newshub"
+
+# ============================================================
+# IndexNow Configuration
+# ============================================================
+indexnow:
+  key: "YOUR_INDEXNOW_API_KEY"
+  host: "kuailianv-p-n.github.io"
+
+# ============================================================
+# Build Settings
+# ============================================================
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+
+# ============================================================
+# Plugins
+# ============================================================
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-redirect-from
+
+# ============================================================
+# Permalink Structure (SEO-friendly)
+# ============================================================
+permalink: /:categories/:title/
+
+# ============================================================
+# Pagination
+# ============================================================
+paginate: 6
+paginate_path: "/blog/page:num/"
+
+# ============================================================
+# Collections
+# ============================================================
+collections:
+  authors:
+    output: false
+
+# ============================================================
+# Defaults
+# ============================================================
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "NewsHub Editorial Team"
+      image: "/assets/images/default-og.png"
+      robots: "index, follow"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      robots: "index, follow"
+
+# ============================================================
+# Feed
+# ============================================================
+feed:
+  title: "NewsHub RSS Feed"
+  description: "Latest news and articles from NewsHub"
+
+# ============================================================
+# SEO Tag Plugin
+# ============================================================
+twitter:
+  username: newshub
+  card: summary_large_image
+
+# ============================================================
+# Exclude from Processing
+# ============================================================
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .github/
+  - README.md
+  - "*.sh"
+  - "*.py"
+
+# ============================================================
+# Include
+# ============================================================
+include:
+  - robots.txt
+  - sitemap.xml
+  - .htaccess
