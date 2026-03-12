@@ -1,43 +1,76 @@
-# Kuailian VPN News Center
+# Kuailian VPN - Jekyll 官方网站
 
-Official news and updates for Kuailian VPN.
+这是快连VPN的官方Jekyll网站，使用现代化的紫色渐变设计。
 
-This is a Jekyll-powered static website hosted on GitHub Pages.
+## 功能特性
 
-## Local Development
+- ✅ 响应式设计（移动、平板、桌面）
+- ✅ 紫色渐变主题
+- ✅ Hero部分（3个关键指标）
+- ✅ 特性介绍卡片
+- ✅ 平台下载部分
+- ✅ 新闻/文章系统
+- ✅ SEO优化
+- ✅ 快速加载
+
+## 本地开发
 
 ```bash
-# Install dependencies
+# 安装依赖
 bundle install
 
-# Run local server
+# 运行本地服务器
 bundle exec jekyll serve
 
-# Visit http://localhost:4000
+# 访问 http://localhost:4000
 ```
 
-## Adding Posts
+## 文件结构
 
-Create new files in `_posts/` directory with the format:
 ```
-YYYY-MM-DD-title.md
+├── _layouts/          # 页面布局
+│   ├── default.html   # 默认布局
+│   ├── home.html      # 首页布局
+│   └── post.html      # 文章布局
+├── _posts/            # 新闻文章
+├── assets/
+│   └── css/
+│       └── style.css  # 主样式文件
+├── index.md           # 首页
+├── news.md            # 新闻列表
+└── _config.yml        # Jekyll配置
 ```
 
-Example:
+## 添加新文章
+
+在 `_posts/` 目录中创建新文件，格式为 `YYYY-MM-DD-title.md`：
+
 ```markdown
 ---
 layout: post
-title: Your Post Title
-author: Author Name
+title: 文章标题
+author: 作者名称
 date: 2026-03-12
 categories: news
+excerpt: 文章摘要
 ---
 
-Your content here...
+文章内容...
 ```
 
-## Deployment
+## 自定义设计
 
-The site is automatically deployed to GitHub Pages when you push to the main branch.
+编辑 `assets/css/style.css` 中的颜色变量：
 
-Visit: https://kuailianv-p-n.github.io/
+```css
+background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+```
+
+## 部署
+
+网站自动部署到 GitHub Pages：
+https://kuailianv-p-n.github.io/
+
+## 许可证
+
+MIT License

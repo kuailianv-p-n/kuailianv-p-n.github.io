@@ -1,0 +1,143 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-wrapper">
+        <div class="hero-content">
+            <h1>{{ site.title }}-永远在线的VPN</h1>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">3s</div>
+                    <div class="stat-label">极速连接</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">72h</div>
+                    <div class="stat-label">免费试用</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">应用支持</div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">桌面版下载</a>
+                <a href="#download" class="btn btn-secondary">其他平台下载</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
+                <rect width="300" height="300" fill="#f0f0f0" rx="20"/>
+                <circle cx="150" cy="150" r="80" fill="#7c3aed" opacity="0.2"/>
+                <text x="150" y="160" text-anchor="middle" font-size="24" fill="#7c3aed" font-weight="bold">VPN APP</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <h2 class="section-title">热门应用任您畅玩，{{ site.title }}</h2>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>"{{ site.title }}"一键，体验顺滑网络</h3>
+            <p>采用全新内核，AI智能匹配全球最快节点，只需轻点"开启快连"，3秒内即可体验丝滑顺畅的冲浪网络感受。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>天涯可达，{{ site.title }}</h3>
+            <p>使用{{ site.title }}可访问全球网络资源，无限制无记录，并利用先进技术彻底清除痕迹，让您在天涯海角也能轻松畅享网络自由。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>{{ site.title }}，随连随用无拘束</h3>
+            <p>全球唯一短期会员VPN——{{ site.title }}，安全稳定，保障用户权益，随时订购使用无忧，永远不用担心跑路。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>不限平台{{ site.title }}</h3>
+            <p>{{ site.title }}支持多种主流设备，一个账号即可同时共享会员，支持多设备在线，保障您在不同场景下畅享无缝连接体验。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>{{ site.title }}，客服在线</h3>
+            <p>使用{{ site.title }}，24小时在线客服与100+网络工程师随时待命，为您提供全程保障，确保随叫随到、永不失联的VIP级上网体验。</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>{{ site.title }}，多设备均可畅享</h3>
+            <p>六台设备任意连接，{{ site.title }}确保在公共Wi-Fi下也能安全、私密地浏览互联网。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Platforms Section -->
+<section class="platforms" id="download">
+    <div class="platforms-wrapper">
+        <h2 class="section-title">{{ site.title }}，多设备均可畅享</h2>
+        
+        <div class="platforms-grid">
+            <div class="platform-card">
+                <div class="platform-icon">💻</div>
+                <h3>电脑PC版</h3>
+                <p>Windows系统完美适配，快速稳定连接</p>
+                <a href="#">立即下载</a>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🍎</div>
+                <h3>苹果手机版</h3>
+                <p>iOS系统专用版本，流畅体验</p>
+                <a href="#">立即下载</a>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🤖</div>
+                <h3>安卓手机版</h3>
+                <p>Android系统完全兼容，性能优异</p>
+                <a href="#">立即下载</a>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🖥️</div>
+                <h3>Mac电脑</h3>
+                <p>macOS系统原生支持，无缝集成</p>
+                <a href="#">立即下载</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="news">
+    <div class="news-wrapper">
+        <h2 class="section-title">新闻快讯</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">APP的一切最新内容，我们都会即时发布</p>
+        
+        <div class="news-grid">
+            {% for post in site.posts limit: 9 %}
+            <div class="news-card">
+                <div class="news-date">{{ post.date | date: "%m-%d-%Y" }}</div>
+                <div class="news-content">
+                    <h3>{{ post.title }}</h3>
+                    <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                    <a href="{{ post.url }}">Read More →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{{ content }}
